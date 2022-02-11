@@ -1,11 +1,9 @@
 {% extends "auctions/layout.html" %}
 {% block body %}
 {% if request.user.is_authenticated %}
-<h1 class="text-light">Active Listings</h1>
-
+<h1 class="text">Active Listings</h1>
 <div class="container">
   <div class="card-group">
-
     {% for listing in listings %}
     {% if not listing.closed %}
     <style>
@@ -22,10 +20,8 @@
         <a href="{% url 'listing' listing.id %}" class="btn btn-primary">go to listing</a>
       </div>
     </div>
-
     {% endif %}
     {% endfor %}
-
   </div>
 </div>
 <div class="container">

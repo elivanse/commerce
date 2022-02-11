@@ -10,7 +10,7 @@ from django.db.models.fields import URLField
 # You may have additional models if you would like.
 
 dicCategorie = {
-    ("mt", "Merlot"),
+    ("wine", "Wine"),
     ("mc", "Malbec"),
     ("cs", "Cabernet Sauvignon"),
     ("sy", "Syrah"),
