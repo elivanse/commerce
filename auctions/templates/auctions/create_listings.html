@@ -1,0 +1,27 @@
+<!--Create Listing: Users should be able to visit a page to create a new listing.
+    They should be able to specify a title for the listing, a text-based description,
+    and what the starting bid should be. Users should also optionally be able to provide a
+    URL for an image for the listing and/or a category (e.g. Fashion, Toys, Electronics, Home, etc.).
+-->
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="row">
+  <div class="col-6 col-md-4"></div>
+  <div class="col-6 col-md-4">
+    <h2 class="text-light">Create listings</h2>
+    <form enctype="multipart/form-data" action="{% url 'create_listings' %}" method="POST">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-6 col-md-4">
+          <div class="card" style="width: 18rem;">
+          {{ form.as_table }}
+          </div>
+        </div>
+      </div>
+      <input class="btn btn-primary" type="submit" value="Guardar">
+    </form>
+  </div>
+</div>
+
+{% endblock %}
