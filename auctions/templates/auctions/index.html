@@ -3,29 +3,34 @@
 {% if request.user.is_authenticated %}
 <h1 class="text">Active Listings</h1>
 <div class="container">
-  <div class="card-group">
-    {% for listing in listings %}
-    {% if not listing.closed %}
-    <style>
-.card-img-top {
-  width: 100%;
-  height: 15vw;
-  object-fit: contain;
-}
-    </style>
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{ listing.photo.url }} " alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{ listing.description }}</h5>
-        <a href="{% url 'listing' listing.id %}" class="btn btn-primary">go to listing</a>
-      </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-  </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Photo</th>
+          <th scope="col">Listing</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for listing in listings %}
+        <tr>
+          <th scope="row">
+            <img src="{{ listing.photo.url }}" alt="image" style="width: 100px; height: auto">
+          </th>
+          <td>
+            {{ listing.description }}
+            Price: ${{ listing.price }}
+          </td>
+          <td>
+            <a href="{% url 'listing' listing.id %}" type="submit" class="btn btn-primary">Go To Listing</a>
+          </td>
+        </tr>
+          {% endfor %}
+      </tbody>
+    </table>
 </div>
 <div class="container">
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="">
       <ul>
         {% for listing in listings %}
         <li>{{ listing.description }}: being sold for ${{ listing.price }} by {{ listing.owner.username }}</li>
