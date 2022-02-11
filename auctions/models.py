@@ -10,16 +10,11 @@ from django.db.models.fields import URLField
 # You may have additional models if you would like.
 
 dicCategorie = {
-    ("wine", "Wine"),
-    ("mc", "Malbec"),
-    ("cs", "Cabernet Sauvignon"),
-    ("sy", "Syrah"),
-    ("pn", "Pinot Noir"),
-    ("sb", "Sauvignon Blanc"),
-    ("cf", "Cabernet Franc"),
-    ("cd", "Chardonnay"),
-    ("sh", "Shiraz"),
-    ("pb", "Pinot Blanc")
+    ("furniture", "Furniture"),
+    ("painting", "Paintings"),
+    ("wines","Wines"),
+    ("clocks","Clocks"),
+    ("phones","Phones")
 }
 
 # usuarios
@@ -42,7 +37,7 @@ class comment(models.Model):
 
 class bid(models.Model):
 
-       # idUser = models.ForeignKey(        User, on_delete=models.CASCADE, related_name="bids_user")
+    # idUser = models.ForeignKey(        User, on_delete=models.CASCADE, related_name="bids_user")
     time = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
@@ -62,7 +57,9 @@ class listing(models.Model):
     bid = models.ManyToManyField(bid, blank=True, related_name="bid")
     comments = models.ManyToManyField(
         comment, blank=True, related_name="comments")
-    photo = models.CharField(max_length=150, blank=True)
+    # photo = models.ImageField(upload_to = "static/media/", null=True, blank=True)
+    photo = models.ImageField( null=True, blank=True)
+    image = models.URLField(null=True,blank=True)
     closed = models.BooleanField(default=False)
 
 # favoritos

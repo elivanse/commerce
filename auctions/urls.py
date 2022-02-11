@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
+from django.conf.urls.static import static
+
 
 from . import views
 
@@ -17,4 +19,5 @@ urlpatterns = [
     path("listing/<int:id>", views.listings_view, name="listing"),
     path("register", views.register_view, name="register"),
 ]
-urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+#staticfiles_urlpatterns()

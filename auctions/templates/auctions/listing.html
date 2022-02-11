@@ -15,7 +15,7 @@
         <div class="card-title">
           <h4>Listing</h4>
         </div>
-        <img src="/static/media/{{ listing.photo }}" alt="image" style="width: 100px; height: auto">
+        <img src="{{ listing.photo.url }}" alt="image" style="width: 100px; height: auto">
         <h5 class="card-title">{{ listing.description }}</h5>
         <p class="card-text">Price: ${{ listing.price }}</p>
         <p class="card-text">Top Horizon: {{ listing.tophorizon }}

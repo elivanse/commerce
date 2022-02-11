@@ -14,7 +14,7 @@
 }
     </style>
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="/static/media/{{ listing.photo }}" alt="Card image cap">
+      <img class="card-img-top" src="{{ listing.photo.url }} " alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{ listing.description }}</h5>
         <a href="{% url 'listing' listing.id %}" class="btn btn-primary">go to listing</a>
