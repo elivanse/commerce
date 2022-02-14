@@ -8,6 +8,7 @@ from django.urls import reverse
 from .forms import *
 from .models import *
 
+
 def index(request):
     return render(request, "auctions/index.html", {"listings": listing.objects.all()})
 
@@ -128,7 +129,7 @@ def listings_view(request, id):
             else:
                 bid = listing_.bid.all()
                 if user.username != listing_.owner.username:  # no es el dueno
-                    if price <= listing_.price:
+                    if float(request.POST.get("price")) <= listing_.price:
                         return render(request, "auctions/listing.html", {
                             "listing": listing_,
                             "form": bid_form(),
@@ -141,7 +142,7 @@ def listings_view(request, id):
                         bid_.user = user
                         bid_.save()
                         listing_.bid.add(bid_)
-                        listing_.price = price
+                        listing_.price = float(request.POST.get("price"))
                         listing_.save()
                     else:
                         return render(request, 'auctions/listing.html', {
@@ -199,7 +200,7 @@ def register_view(request):
                 "message": "Error. Passwords are different."
             })
         try:
-            usr_ = User.objects.create_user(username_, email_, password_)
+            usr_ = User.objects.create_user(user_, email_, password_)
             usr_.save()
         except IntegrityError:
             return render(request, "auctions/register.html", {
